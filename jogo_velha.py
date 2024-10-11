@@ -3,11 +3,11 @@ import pygame
 
 # pygame setup
 pygame.init()
+pygame.display.set_caption("JOGO DA VELHA")
 screen = pygame.display.set_mode((500, 500))
 clock = pygame.time.Clock()
 running = True
 cor_fundo = 1
-
 
 while running:
     # poll for events
@@ -20,7 +20,6 @@ while running:
             cor_fundo = cor_fundo + 1
             if(cor_fundo > 3):
                 cor_fundo = 1
-
 
     # fill the screen with a color to wipe away anything from last frame
 
