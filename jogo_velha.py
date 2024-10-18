@@ -6,14 +6,14 @@ pygame.init() #inicialização do
 pygame.font.init() #inicialização do pacote de fontes no pygame
 
 pygame.display.set_caption("JOGO DA VELHA") #nome da janela do jogo
-screen = pygame.display.set_mode((500, 500)) #definição do tamanho da tela
+screen = pygame.display.set_mode((600, 600)) #definição do tamanho da tela
 clock = pygame.time.Clock() #biblioteca tempo
 
-fonte_quadrinhos = pygame.font.SysFont('Comic Sans Ms', 30, True, True) #importar fonte
+fonte_quadrinhos = pygame.font.SysFont('Comic Sans Ms', 100, True, True) #importar fonte
 running = True #variavel de controle do status do jogo
 
-personagem_x = fonte_quadrinhos.render('X', True, 'black')
-personagem_y = fonte_quadrinhos.render('O', True, 'green')
+personagem_x = fonte_quadrinhos.render('X', True, 'red')
+personagem_y = fonte_quadrinhos.render('O', True, 'red')
 cor_fundo = 1
 
 while running:
@@ -28,18 +28,17 @@ while running:
             if(cor_fundo > 3):
                 cor_fundo = 1
 
-    # fill the screen with a color to wipe away anything from last frame
+                                       #origem    destino
+    # desenha o tabuleiro              (x , y)    (x , y) 
+    pygame.draw.line(screen, 'white', (200, 0), (200, 600), 10)
+    pygame.draw.line(screen, 'white', (400, 0), (400, 600), 10)
+    pygame.draw.line(screen, 'white', (0, 200), (600, 200), 10)
+    pygame.draw.line(screen, 'white', (0, 400),(600, 400), 10)
 
-    # RENDER YOUR GAME HERE
-    if cor_fundo == 1:
-         screen.fill("white")
-         screen.blit(personagem_x,(250,250))
-    elif cor_fundo == 2:
-         screen.fill("white")
-         screen.blit(personagem_y,(250,250))
-    else: 
-         screen.fill("#ff6347")
-
+    screen.blit(personagem_x,(60,30))
+    screen.blit(personagem_y,(260,30))
+    screen.blit(personagem_x,(460,30))
+       
     # flip() the display to put your work on screen
     pygame.display.flip()
 
