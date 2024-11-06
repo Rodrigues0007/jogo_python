@@ -13,8 +13,8 @@ clock = pygame.time.Clock() #biblioteca de tempo
 fonte_quadrinhos = pygame.font.SysFont('Comic Sans Ms', 100, True, True) #importar fonte
 running = True #variável de controle do status do jogo
 
-personagem_x = fonte_quadrinhos.render('X', True, 'red')
-personagem_o = fonte_quadrinhos.render('O', True, 'red')
+personagem_x = fonte_quadrinhos.render('X', True, '#DC143C')
+personagem_o = fonte_quadrinhos.render('O', True, '#48D1CC')
 
 jogador_atual = personagem_x #inicializa o jogo com o X
 
@@ -77,6 +77,35 @@ def faz_jogada():
         status = False
     return status
 
+def check_vencedor():
+    status = False
+    if q1 == q2 == q3 != '':
+        pygame.draw.line(screen, 'yellow', (50, 100), (550, 0), (200, 10))
+        status = True
+    elif q4 == q5 == q6 != '':
+        pygame.draw.line(screen, 'yellow', (50, 300), (550, 300), (200, 10))
+        status = True
+    elif q7 == q8 == q9 != '':
+        pygame.draw.line(screen, 'yellow', (50, 500), (550, 550), (200, 10))
+        status = True
+    elif q1 == q4 == q7 != '':
+        pygame.draw.line(screen, 'yellow', (50, 500), (550, 550), (200, 10))
+        status = True
+    elif q2 == q5 == q8 != '':
+        pygame.draw.line(screen, 'yellow', (50, 500), (550, 550), (200, 10))
+        status = True
+    elif q2 == q6 == q9 != '':
+        pygame.draw.line(screen, 'yellow', (50, 500), (550, 550), (200, 10))
+        status = True
+    elif q1 == q5 == q9 != '':
+        pygame.draw.line(screen, 'yellow', (50, 500), (550, 550), (200, 10))
+        status = True
+    elif q3 == q5 == q7 != '':
+        pygame.draw.line(screen, 'yellow', (50, 500), (550, 550), (200, 10))
+        status = True
+    return status
+
+
 while running:
     # controle de enventos no jgo
     for event in pygame.event.get():
@@ -103,9 +132,13 @@ while running:
                 jogador_atual = personagem_o
             else:
                 jogador_atual = personagem_x
+            if(check_vencedor()):
+                rodadas = 9
+
 
     if tabuleiro_desenhado == False:
-        desenha_tabuleiro(10, 'yellow')
+        desenha_tabuleiro(20, '#FFA500')
+        desenha_tabuleiro(10, '#FF4500')
         q1 = ''
         q2 = ''
         q3 = ''
